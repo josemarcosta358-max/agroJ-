@@ -1,3 +1,46 @@
+<?php
+session_start();
+require_once '../db_mock.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome     = htmlspecialchars(trim($_POST['nome'] ?? ''));
+    $telefone = htmlspecialchars(trim($_POST['telefone'] ?? ''));
+    $email    = htmlspecialchars(trim($_POST['email'] ?? ''));
+    $tipo     = htmlspecialchars(trim($_POST['tipo'] ?? ''));
+    $senha    = $_POST['senha'] ?? ''; // senha não passa por htmlspecialchars para não alterar caracteres
+
+    // Gera um novo ID simples, contando os utilizadores mock + os já criados nesta sessão
+    $total_extra = isset($_SESSION['usuarios_extra']) ? count($_SESSION['usuarios_extra']) : 0;
+    $novo_id = count($usuarios) + $total_extra + 1;
+
+    $novo_usuario = [
+        'id'       => $novo_id,
+        'nome'     => $nome,
+        'email'    => $email,
+        'senha'    => $senha,
+        'perfil'   => $tipo,
+        'provincia'=> '', // ainda não recolhido no formulário
+        'telefone' => $telefone,
+        'ativo'    => true,
+    ];
+
+    // Como ainda não temos MySQL, guardamos o novo utilizador apenas na sessão (para fins de teste)
+    if (!isset($_SESSION['usuarios_extra'])) {
+        $_SESSION['usuarios_extra'] = [];
+    }
+    $_SESSION['usuarios_extra'][] = $novo_usuario;
+
+    // Login automático após o registo
+    $_SESSION['logado']       = true;
+    $_SESSION['usuario_id']   = $novo_usuario['id'];
+    $_SESSION['usuario_nome'] = $novo_usuario['nome'];
+    $_SESSION['usuario_tipo'] = $novo_usuario['perfil'];
+    $_SESSION['mensagem_sucesso'] = "Conta criada com sucesso! Bem-vindo(a) à AgroJá, " . $novo_usuario['nome'] . ".";
+
+    header('Location: ../index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -9,24 +52,24 @@
 </head>
 <body class="auth-body">
     <header id="header">
-        <a href="../index.html" class="logo"><span>AgroJa</span></a>
+        <a href="../index.php" class="logo"><span>AgroJa</span></a>
         <button class="hamburger" id="hamburger" aria-label="menu">
             <span></span><span></span><span></span>
         </button>
 
         <nav class="menu" id="nav-menu">
             <ul>
-                <li><a href="../index.html#hero">Inicio</a></li>
-                <li><a href="../index.html#sobre">Sobre Nós</a></li>
-                <li><a href="../index.html#servicos">Serviços</a></li>
-                <li><a href="../index.html#contactos">Contactos</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="cadastro.html" class="active">Cadastro</a></li>
+                <li><a href="../index.php#hero">Inicio</a></li>
+                <li><a href="../index.php#sobre">Sobre Nós</a></li>
+                <li><a href="../index.php#servicos">Serviços</a></li>
+                <li><a href="../index.php#contactos">Contactos</a></li>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="cadastro.php" class="active">Cadastro</a></li>
             </ul>
         </nav>
 
         <div class="header-right">
-            <a href="../index.html" class="btn-login">Voltar</a>
+            <a href="../index.php" class="btn-login">Voltar</a>
         </div>
     </header>
 
@@ -50,7 +93,7 @@
                     <p>Preenche os dados abaixo e entra para a comunidade AgroJá.</p>
                 </div>
 
-                <form class="auth-form">
+                <form class="auth-form" method="POST" action="">
                     <div class="field-group">
                         <label for="nome">Nome completo</label>
                         <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
@@ -69,9 +112,11 @@
                     <div class="field-group">
                         <label for="tipo">Eu sou</label>
                         <select id="tipo" name="tipo">
-                            <option value="produtor">Produtor</option>
-                            <option value="trabalhador">Trabalhador</option>
-                            <option value="ambos">Ambos</option>
+                            <option value="produtor">Produtor Individual</option>
+                            <option value="cooperativa">Cooperativa</option>
+                            <option value="trabalhador">Trabalhador Rural Sazonal</option>
+                            <option value="prestador">Prestador Especializado</option>
+                            <option value="agente">Agente Comunitário</option>
                         </select>
                     </div>
 
@@ -84,7 +129,7 @@
 
                     <p class="auth-switch">
                         Já tens conta?
-                        <a href="login.html">Entrar</a>
+                        <a href="login.php">Entrar</a>
                     </p>
                 </form>
             </div>

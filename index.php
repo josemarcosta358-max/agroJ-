@@ -1,9 +1,13 @@
+<?php
+session_start();
+require_once 'db_mock.php';
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-AO">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AgroJá</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="Styles/index.css">
 </head>
@@ -14,27 +18,47 @@
             <span></span><span></span><span></span>
         </button>
 
-
         <nav class="menu" id="nav-menu">
             <ul>
                 <li><a href="#hero">Inicio</a></li>
                 <li><a href="#sobre">Sobre Nós</a></li>
-                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="vagas.php">Serviços</a></li>
                 <li><a href="#contactos">Contactos</a></li>
-                <li><a href="paginas/login.html">Login</a></li>
-                <li><a href="paginas/cadastro.html">Cadastro</a></li>
+
+                <?php if (isset($_SESSION['logado']) && $_SESSION['logado'] === true): ?>
+                    <li><a href="paginas/dashboard.php">Meu Painel</a></li>
+                    <li><a href="paginas/logout.php">Sair</a></li>
+                <?php else: ?>
+                    <li><a href="paginas/login.php">Login</a></li>
+                    <li><a href="paginas/cadastro.php">Cadastro</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
 
         <div class="header-right">
-            <form action="" method="get" class="search-wrap">
+            <form action="vagas.php" method="get" class="search-wrap">
                 <input type="text" name="quwery" placeholder="Pesquisar trabalhos..." required>
                 <button type="submit"><i class="bi bi-search"></i>Pesquisar</button>
             </form>
 
-            <a href="paginas/login.html" class="btn-login">Entrar</a>
+            <?php if (isset($_SESSION['logado']) && $_SESSION['logado'] === true): ?>
+                <span class="btn-login">
+                    Olá, <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
+                    | <a href="paginas/dashboard.php" style="color: inherit;">Meu Painel</a>
+                    | <a href="paginas/logout.php" style="color: inherit;">Sair</a>
+                </span>
+            <?php else: ?>
+                <a href="paginas/login.php" class="btn-login">Entrar</a>
+            <?php endif; ?>
         </div>
     </header>
+
+    <?php if (!empty($_SESSION['mensagem_sucesso'])): ?>
+        <div class="mensagem-sucesso">
+            <?= htmlspecialchars($_SESSION['mensagem_sucesso']) ?>
+        </div>
+        <?php unset($_SESSION['mensagem_sucesso']); // mostra só uma vez ?>
+    <?php endif; ?>
 
     <section id="hero">
         <div class="hero-grid" aria-hidden="true"></div>
@@ -42,11 +66,10 @@
         <p>Ligue-se a trabalhadores e produtores em toda Angola. O mercado profissional para quem cultiva o futuro da nossa terra.</p>
 
         <div class="hero-cta">
-            <a href="paginas/cadastro.html" class="btn-primary">Juntar-me</a>
+            <a href="paginas/cadastro.php" class="btn-primary">Juntar-me</a>
             <a href="#" class="btn-secondary">Saber mais</a>
         </div>
     </section>
-
 
     <section id="sobre" class="info-section">
         <span class="section-label">Quem somos</span>
@@ -114,6 +137,49 @@
         </div>
     </section>
 
+    <section id="servicos" class="vagas-section">
+        <span class="section-label">Mercado de trabalho</span>
+        <h2 class="section-title">Oportunidades no AgroJá</h2>
+
+        <div class="vagas-grid">
+            <?php foreach ($vagas as $vaga): ?>
+                <?php
+                    // Define o estilo da borda caso a vaga seja destaque (paga)
+                    $estilo_destaque = $vaga['destaque'] ? 'border: 2px solid #f39c12;' : '';
+
+                    // Define a cor do badge de estado
+                    if ($vaga['estado'] === 'aberta') {
+                        $badge_estado = '<span class="badge bg-success">Aberta</span>';
+                    } elseif ($vaga['estado'] === 'em_candidatura') {
+                        $badge_estado = '<span class="badge bg-primary">Em Candidatura</span>';
+                    } else {
+                        $badge_estado = '<span class="badge bg-secondary">' . htmlspecialchars($vaga['estado']) . '</span>';
+                    }
+                ?>
+                <a href="vaga_detalhe.php?id=<?= (int)$vaga['id'] ?>" class="vaga-card-link">
+                    <div class="vaga-card" style="<?= $estilo_destaque ?>">
+                        <div class="vaga-card-header">
+                            <?php if ($vaga['destaque']): ?>
+                                <span class="badge bg-warning text-dark">🔥 Destacada</span>
+                            <?php endif; ?>
+                            <?= $badge_estado ?>
+                        </div>
+
+                        <h3 class="vaga-titulo"><?= htmlspecialchars($vaga['titulo']) ?></h3>
+                        <p class="vaga-descricao"><?= htmlspecialchars($vaga['descricao']) ?></p>
+
+                        <div class="vaga-footer">
+                            <span class="vaga-valor">
+                                <?= number_format($vaga['valor_total_kz'], 2, ',', '.') . ' Kz' ?>
+                            </span>
+                            <span class="btn-secondary">Ver detalhes</span>
+                        </div>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
     <section id="contactos" class="comu-section">
         <span class="section-label">Fale connosco</span>
         <h2 class="section-title">Entre em Contacto</h2>
@@ -139,7 +205,6 @@
                 <div class="form-group">
                     <label for="nome">Seu Nome</label>
                     <input type="text" id="nome" name="nome" placeholder="José Costa" required>
-
                 </div>
 
                 <div class="form-group">
@@ -153,7 +218,6 @@
                 </div>
                 <button type="submit" class="btn-enviar"><i class="bi bi-send"></i>Enviar Mensagem</button>
             </form>
-
         </div>
     </section>
 
