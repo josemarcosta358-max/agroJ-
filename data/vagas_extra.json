@@ -1,0 +1,14 @@
+[
+    {
+        "id": 224,
+        "produtor_id": 1,
+        "titulo": "Colheita",
+        "descricao": "Vem so",
+        "tipo_servico": "mao_de_obra",
+        "valor_total_kz": 11500,
+        "estado": "aberta",
+        "destaque": true,
+        "eh_destacada": true,
+        "data_criacao": "2026-07-18"
+    }
+]

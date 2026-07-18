@@ -1,0 +1,23 @@
+[
+    {
+        "vaga_id": 2,
+        "vaga_titulo": "Tractorista com urgência",
+        "candidato_id": 1,
+        "candidato_nome": "Manuel Kiluanji",
+        "estado": "aceite"
+    },
+    {
+        "vaga_id": 2,
+        "vaga_titulo": "Tractorista com urgência",
+        "candidato_id": 2,
+        "candidato_nome": "Ana Domingos",
+        "estado": "aceite"
+    },
+    {
+        "vaga_id": 224,
+        "vaga_titulo": "Colheita",
+        "candidato_id": 2,
+        "candidato_nome": "Ana Domingos",
+        "estado": "aceite"
+    }
+]
