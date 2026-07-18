@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgroJá - Conversa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen">
+<div class="app-frame flex flex-col" style="min-height:100vh;">
+<header class="bg-surface border-b border-outline-variant w-full flex justify-between items-center px-margin-mobile h-16 sticky top-0 z-30">
+<div class="flex items-center gap-3">
+<a href="mensagens-produtor.html" class="p-2 -ml-2 active:scale-95 transition-transform text-on-surface-variant"><span class="material-symbols-outlined text-[28px]">arrow_back</span></a>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">person</span></div>
+<div><h1 class="font-headline-sm text-headline-sm text-primary leading-tight">Domingos Chissingui</h1><p class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1"><span class="w-2 h-2 bg-primary rounded-full"></span> Online agora</p></div>
+</div>
+</div>
+<div class="flex items-center gap-1"><button class="p-2 text-on-surface-variant active:scale-90 transition-transform"><span class="material-symbols-outlined">call</span></button><button class="p-2 text-on-surface-variant active:scale-90 transition-transform"><span class="material-symbols-outlined">more_vert</span></button></div>
+</header>
+<main class="message-area overflow-y-auto px-margin-mobile pt-lg pb-4 flex flex-col gap-4 flex-1" id="message-area">
+<div class="flex justify-center my-2"><span class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-4 py-1 rounded-full">Hoje</span></div>
+<div class="flex flex-col items-end max-w-[85%] self-end"><div class="bg-primary-container text-on-primary-container p-4 rounded-t-xl rounded-bl-xl shadow-sm"><p class="font-body-md text-body-md">Olá! Recebi a sua candidatura para a vaga de colheita. Tem experiência com o trator modelo MF 4290?</p></div><div class="flex items-center gap-1 mt-1 mr-1"><span class="font-label-md text-label-md text-on-surface-variant">08:45</span><span class="material-symbols-outlined text-[16px] text-primary">done_all</span></div></div>
+<div class="flex flex-col items-start max-w-[85%] self-start"><div class="bg-surface-container-highest text-on-surface p-4 rounded-t-xl rounded-br-xl shadow-sm border border-outline-variant/30"><p class="font-body-md text-body-md">Bom dia. Sim, trabalhei com esse modelo nas últimas duas safras na região de Malanje. Conheço bem a manutenção básica também.</p></div><span class="font-label-md text-label-md text-on-surface-variant mt-1 ml-1">08:48</span></div>
+<div class="flex flex-col items-end max-w-[85%] self-end"><div class="bg-primary-container text-on-primary-container rounded-xl overflow-hidden shadow-sm"><div class="w-full aspect-video bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=800&auto=format&fit=crop');"></div><div class="p-4"><p class="font-body-md text-body-md">Ótimo. Este é o equipamento que estamos a usar. Pode vir para uma conversa prática amanhã às 09:00?</p></div></div><div class="flex items-center gap-1 mt-1 mr-1"><span class="font-label-md text-label-md text-on-surface-variant">08:52</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">done_all</span></div></div>
+<div class="bg-secondary-container/20 border border-secondary-container p-4 rounded-xl flex items-start gap-3 my-2"><span class="material-symbols-outlined text-secondary">info</span><p class="font-label-md text-label-md text-on-secondary-fixed-variant">Realize sempre os pagamentos através da plataforma AgroJá para garantir a sua segurança.</p></div>
+</main>
+<div class="bg-surface px-margin-mobile py-sm flex items-center gap-2 border-t border-outline-variant h-20">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant active:scale-90 transition-transform"><span class="material-symbols-outlined text-[28px]">add_circle</span></button>
+<div class="flex-1 bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant flex items-center"><input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Escreva uma mensagem..." type="text" id="msgInput"/></div>
+<button class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform" id="sendBtn"><span class="material-symbols-outlined fill-icon">send</span></button>
+</div>
+</div>
+<script src="js/app.js"></script>
+</body></html>
