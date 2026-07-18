@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Painel do Produtor - AgroJá</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<div class="app-frame">
+<header class="bg-surface border-b border-outline-variant w-full sticky top-0 z-30 px-margin-mobile pt-4 pb-3">
+<div class="flex items-center justify-between">
+<div><p class="font-body-sm text-on-surface-variant">Bem-vindo de volta,</p><h1 class="font-headline-md text-headline-md text-primary font-bold">Fazenda Sol</h1></div>
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center"><span class="material-symbols-outlined">agriculture</span></div>
+</div>
+</header>
+<main class="px-margin-mobile pt-5 pb-4 flex flex-col gap-6">
+<div class="grid grid-cols-2 gap-3"><div class="bg-white rounded-xl border border-outline-variant p-4">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2"><span class="material-symbols-outlined text-[18px]">assignment</span><span class="font-label-md text-[12px]">Vagas publicadas / mês</span></div>
+<p class="font-headline-md text-headline-md text-primary font-bold">6</p>
+</div>
+<div class="bg-white rounded-xl border border-outline-variant p-4">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2"><span class="material-symbols-outlined text-[18px]">task_alt</span><span class="font-label-md text-[12px]">Vagas fechadas</span></div>
+<p class="font-headline-md text-headline-md text-primary font-bold">4</p>
+</div>
+<div class="bg-white rounded-xl border border-outline-variant p-4">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2"><span class="material-symbols-outlined text-[18px]">percent</span><span class="font-label-md text-[12px]">Taxa de conversão</span></div>
+<p class="font-headline-md text-headline-md text-primary font-bold">67%</p>
+</div>
+<div class="bg-white rounded-xl border border-outline-variant p-4">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2"><span class="material-symbols-outlined text-[18px]">payments</span><span class="font-label-md text-[12px]">Comissão paga este mês</span></div>
+<p class="font-headline-md text-headline-md text-primary font-bold">31.400 Kz</p>
+</div></div>
+<a href="publicar-vaga.html" class="w-full h-14 bg-primary text-on-primary rounded-full font-label-lg text-label-lg flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all"><span class="material-symbols-outlined">add_circle</span>Publicar Nova Vaga</a>
+<section><h2 class="font-headline-sm text-headline-sm text-on-surface mb-3">As Suas Vagas</h2><div class="bg-white rounded-xl border border-outline-variant overflow-hidden"><div class="flex items-center justify-between p-4 border-b border-outline-variant/40 last:border-0">
+<div><p class="font-label-lg text-label-lg text-on-surface">Colheita de Milho</p><p class="font-body-sm text-body-sm text-on-surface-variant">12 candidaturas</p></div>
+<span class="px-3 py-1 rounded-full font-label-md text-[11px] bg-primary-container text-on-primary-container">Aberta</span>
+</div>
+<div class="flex items-center justify-between p-4 border-b border-outline-variant/40 last:border-0">
+<div><p class="font-label-lg text-label-lg text-on-surface">Condução de Tractor MF 4290</p><p class="font-body-sm text-body-sm text-on-surface-variant">3 candidaturas</p></div>
+<span class="px-3 py-1 rounded-full font-label-md text-[11px] bg-secondary-container text-on-secondary-container">Em curso</span>
+</div>
+<div class="flex items-center justify-between p-4 border-b border-outline-variant/40 last:border-0">
+<div><p class="font-label-lg text-label-lg text-on-surface">Transporte de Colheita</p><p class="font-body-sm text-body-sm text-on-surface-variant">8 candidaturas</p></div>
+<span class="px-3 py-1 rounded-full font-label-md text-[11px] bg-surface-container-high text-on-surface-variant">Concluída</span>
+</div>
+<div class="flex items-center justify-between p-4 border-b border-outline-variant/40 last:border-0">
+<div><p class="font-label-lg text-label-lg text-on-surface">Aplicação de Fertilizante</p><p class="font-body-sm text-body-sm text-on-surface-variant">5 candidaturas</p></div>
+<span class="px-3 py-1 rounded-full font-label-md text-[11px] bg-primary-container text-on-primary-container">Aberta</span>
+</div></div></section>
+<section class="bg-tertiary-container/10 border border-tertiary-container/40 rounded-xl p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary">groups</span>
+<div><p class="font-label-lg text-label-lg text-on-surface">É uma cooperativa ou associação?</p><p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Publique vagas em nome de vários membros e aceda a condições de parceria institucional.</p><button class="mt-2 font-label-md text-label-md text-primary font-semibold">Saber mais →</button></div>
+</section>
+</main>
+<nav class="bottom-nav w-full bg-surface-container-lowest border-t border-outline-variant flex items-stretch z-50 h-[68px]"><a href="home-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">home</span>
+<span class="font-label-md text-[11px] font-medium">Início</span>
+</a><a href="painel-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-primary">
+<span class="material-symbols-outlined fill-icon text-[24px]">dashboard</span>
+<span class="font-label-md text-[11px] font-medium">Painel</span>
+</a><a href="publicar-vaga.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">add_circle</span>
+<span class="font-label-md text-[11px] font-medium">Publicar</span>
+</a><a href="mensagens-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">chat_bubble</span>
+<span class="font-label-md text-[11px] font-medium">Mensagens</span>
+</a><a href="perfil-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">person</span>
+<span class="font-label-md text-[11px] font-medium">Perfil</span>
+</a></nav>
+</div>
+</body></html>

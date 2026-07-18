@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgroJá - Início</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<div class="app-frame">
+<header class="sticky top-0 z-30 bg-gradient-to-b from-surface to-surface/95 backdrop-blur px-margin-mobile pt-4 pb-3 border-b border-outline-variant/60">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">person</span></div>
+<div class="min-w-0">
+<p class="font-body-sm text-on-surface-variant leading-tight">Olá,</p>
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Domingos</h1>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<a href="home-produtor.html" title="Mudar para Produtor" class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]">sync_alt</span>
+</a>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile pt-4 pb-6 flex flex-col gap-5">
+
+<div class="flex gap-2"><div class="flex flex-col items-center justify-center gap-1 bg-white rounded-2xl border border-outline-variant py-3 px-2 flex-1 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">star</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate w-full text-center">4.9</span>
+<span class="font-label-md text-[10px] text-on-surface-variant truncate w-full text-center">Avaliação</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 bg-white rounded-2xl border border-outline-variant py-3 px-2 flex-1 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">work_history</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate w-full text-center">31</span>
+<span class="font-label-md text-[10px] text-on-surface-variant truncate w-full text-center">Trabalhos</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 bg-white rounded-2xl border border-outline-variant py-3 px-2 flex-1 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">event_available</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate w-full text-center">98%</span>
+<span class="font-label-md text-[10px] text-on-surface-variant truncate w-full text-center">Comparência</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 bg-white rounded-2xl border border-outline-variant py-3 px-2 flex-1 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">payments</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate w-full text-center">312 mil Kz</span>
+<span class="font-label-md text-[10px] text-on-surface-variant truncate w-full text-center">Este mês</span>
+</div></div>
+
+<div class="relative overflow-hidden rounded-2xl p-5 flex flex-col gap-3" style="background: linear-gradient(135deg, #0f4a28, #1f6b3a 60%, #2c8a4c);">
+<span class="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/10"></span>
+<span class="absolute right-10 bottom-2 w-16 h-16 rounded-full bg-white/10"></span>
+<span class="inline-flex items-center gap-1.5 bg-white/15 text-white px-3 py-1 rounded-full font-label-md text-[11px] w-fit backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px] fill-icon">verified</span>Sem mensalidade</span>
+<div class="relative z-10">
+<h2 class="font-headline-sm text-headline-sm text-white font-bold leading-tight max-w-[220px]">Comissão só quando o trabalho acontece</h2>
+<p class="font-body-sm text-body-sm text-white/80 mt-1 max-w-[240px]">Candidate-se a vagas perto de si sem pagar nada adiantado.</p>
+<a href="vagas.html" class="mt-3 bg-white text-primary font-label-lg text-label-lg px-4 py-2.5 rounded-full inline-flex items-center gap-2 active:scale-95 transition-transform w-fit">Ver vagas perto de si<span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+
+<section>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-2">Categorias</h3>
+<div class="flex gap-2"><a href="vagas.html" class="flex flex-col items-center justify-center gap-2 bg-white rounded-2xl border border-outline-variant py-4 flex-1 active:scale-95 transition-transform min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">agriculture</span></div>
+<span class="font-label-md text-[11px] text-on-surface-variant text-center px-1 truncate w-full">Campo</span>
+</a>
+<a href="vagas.html" class="flex flex-col items-center justify-center gap-2 bg-white rounded-2xl border border-outline-variant py-4 flex-1 active:scale-95 transition-transform min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">local_shipping</span></div>
+<span class="font-label-md text-[11px] text-on-surface-variant text-center px-1 truncate w-full">Transporte</span>
+</a>
+<a href="vagas.html" class="flex flex-col items-center justify-center gap-2 bg-white rounded-2xl border border-outline-variant py-4 flex-1 active:scale-95 transition-transform min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">engineering</span></div>
+<span class="font-label-md text-[11px] text-on-surface-variant text-center px-1 truncate w-full">Especializado</span>
+</a>
+<a href="vagas.html" class="flex flex-col items-center justify-center gap-2 bg-white rounded-2xl border border-outline-variant py-4 flex-1 active:scale-95 transition-transform min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">bolt</span></div>
+<span class="font-label-md text-[11px] text-on-surface-variant text-center px-1 truncate w-full">Urgentes</span>
+</a></div>
+</section>
+
+<section>
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-label-lg text-label-lg text-on-surface">A Minha Actividade</h3>
+<a href="vagas.html" class="font-label-md text-[12px] text-primary font-semibold">Ver tudo</a>
+</div>
+<div class="flex flex-col gap-3"><a href="detalhes-vaga.html" class="relative w-full text-left bg-white rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow overflow-hidden flex items-stretch">
+<div class="w-24 flex-shrink-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?q=80&w=400&auto=format&fit=crop')"></div>
+<div class="flex-1 min-w-0 p-3 flex flex-col justify-center gap-1">
+<span class="px-2 py-0.5 rounded-full font-label-md text-[10px] w-fit bg-secondary-container text-on-secondary-container">Aceite</span>
+<h3 class="font-label-lg text-label-lg text-on-surface truncate">Colheita de Milho</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Fazenda Sol · início 21 Jul</p>
+<span class="font-label-md text-[12px] text-primary font-semibold flex items-center gap-0.5">Detalhes<span class="material-symbols-outlined text-[14px]">chevron_right</span></span>
+</div>
+<a href="conversa.html" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md active:scale-90 transition-transform"><span class="material-symbols-outlined text-[18px] fill-icon">chat</span></a>
+</a>
+<a href="meus-trabalhos.html" class="relative w-full text-left bg-white rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow overflow-hidden flex items-stretch">
+<div class="w-24 flex-shrink-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=400&auto=format&fit=crop')"></div>
+<div class="flex-1 min-w-0 p-3 flex flex-col justify-center gap-1">
+<span class="px-2 py-0.5 rounded-full font-label-md text-[10px] w-fit bg-primary-container text-on-primary-container">Concluído</span>
+<h3 class="font-label-lg text-label-lg text-on-surface truncate">Transporte de Colheita</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Fazenda Sol · concluído 02 Jul</p>
+<span class="font-label-md text-[12px] text-primary font-semibold flex items-center gap-0.5">Detalhes<span class="material-symbols-outlined text-[14px]">chevron_right</span></span>
+</div>
+
+</a></div>
+</section>
+
+</main>
+<nav class="bottom-nav w-full bg-surface-container-lowest border-t border-outline-variant flex items-stretch z-50 h-[68px]"><a href="index.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-primary">
+<span class="material-symbols-outlined fill-icon text-[24px]">home</span>
+<span class="font-label-md text-[11px] font-medium">Início</span>
+</a><a href="vagas.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">work</span>
+<span class="font-label-md text-[11px] font-medium">Vagas</span>
+</a><a href="mensagens.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">chat_bubble</span>
+<span class="font-label-md text-[11px] font-medium">Mensagens</span>
+</a><a href="meus-trabalhos.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">assignment_turned_in</span>
+<span class="font-label-md text-[11px] font-medium">Trabalhos</span>
+</a><a href="perfil.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">person</span>
+<span class="font-label-md text-[11px] font-medium">Perfil</span>
+</a></nav>
+</div>
+</body></html>

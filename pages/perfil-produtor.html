@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil - AgroJá</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<div class="app-frame">
+<header class="bg-surface border-b border-outline-variant w-full sticky top-0 z-30 px-margin-mobile py-4 flex items-center justify-between">
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Perfil</h1>
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">settings</span></button>
+</header>
+<main class="px-margin-mobile pt-6 pb-4 flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-4xl">agriculture</span></div>
+<div><div class="flex items-center gap-2"><h2 class="font-headline-sm text-headline-sm text-on-surface">Fazenda Sol</h2><span class="material-symbols-outlined text-primary text-[20px] fill-icon">verified</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Huambo, Longonjo</p><div class="flex items-center gap-1 text-secondary mt-1"><span class="material-symbols-outlined text-[16px] fill-icon">star</span><span class="font-label-md text-[13px]">4.9 · 124 avaliações</span></div></div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white rounded-xl border border-outline-variant p-3 text-center"><p class="font-headline-sm text-headline-sm text-primary font-bold">18</p><p class="font-label-md text-[11px] text-on-surface-variant">Vagas fechadas</p></div>
+<div class="bg-white rounded-xl border border-outline-variant p-3 text-center"><p class="font-headline-sm text-headline-sm text-primary font-bold">67%</p><p class="font-label-md text-[11px] text-on-surface-variant">Conversão</p></div>
+<div class="bg-white rounded-xl border border-outline-variant p-3 text-center"><p class="font-headline-sm text-headline-sm text-primary font-bold">31.400</p><p class="font-label-md text-[11px] text-on-surface-variant">Kz comissão/mês</p></div>
+</div>
+<section><h3 class="font-label-lg text-label-lg text-on-surface mb-2">Área de Actividade</h3><div class="flex flex-wrap gap-2"><span class="bg-surface-container-high text-on-surface-variant px-3 py-1.5 rounded-full font-label-md text-[12px]">Colheita mecanizada</span> <span class="bg-surface-container-high text-on-surface-variant px-3 py-1.5 rounded-full font-label-md text-[12px]">Fertilização</span> <span class="bg-surface-container-high text-on-surface-variant px-3 py-1.5 rounded-full font-label-md text-[12px]">Irrigação</span> <span class="bg-surface-container-high text-on-surface-variant px-3 py-1.5 rounded-full font-label-md text-[12px]">Comercialização</span></div></section>
+<section><h3 class="font-label-lg text-label-lg text-on-surface mb-1">Últimas Vagas Concluídas</h3><div class="bg-white rounded-xl border border-outline-variant px-4"><div class="flex items-center justify-between py-3 border-b border-outline-variant/40 last:border-0"><div><p class="font-label-lg text-label-lg text-on-surface">Transporte de Colheita</p><p class="font-body-sm text-body-sm text-on-surface-variant">Domingos Chissingui · 02 Jul 2026</p></div><span class="flex items-center gap-1 text-secondary"><span class="material-symbols-outlined text-[16px] fill-icon">star</span><span class="font-label-md text-[13px]">5.0</span></span></div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/40 last:border-0"><div><p class="font-label-lg text-label-lg text-on-surface">Aplicação de Fertilizante</p><p class="font-body-sm text-body-sm text-on-surface-variant">Isabel Mucanga · 24 Jun 2026</p></div><span class="flex items-center gap-1 text-secondary"><span class="material-symbols-outlined text-[16px] fill-icon">star</span><span class="font-label-md text-[13px]">4.9</span></span></div></div></section>
+<button class="w-full h-12 border border-primary text-primary rounded-full font-label-lg text-label-lg active:scale-95 transition-all">Editar Perfil</button>
+</main>
+<nav class="bottom-nav w-full bg-surface-container-lowest border-t border-outline-variant flex items-stretch z-50 h-[68px]"><a href="home-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">home</span>
+<span class="font-label-md text-[11px] font-medium">Início</span>
+</a><a href="painel-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">dashboard</span>
+<span class="font-label-md text-[11px] font-medium">Painel</span>
+</a><a href="publicar-vaga.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">add_circle</span>
+<span class="font-label-md text-[11px] font-medium">Publicar</span>
+</a><a href="mensagens-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-on-surface-variant">
+<span class="material-symbols-outlined  text-[24px]">chat_bubble</span>
+<span class="font-label-md text-[11px] font-medium">Mensagens</span>
+</a><a href="perfil-produtor.html" class="flex flex-col items-center justify-center gap-0.5 flex-1 py-2 text-primary">
+<span class="material-symbols-outlined fill-icon text-[24px]">person</span>
+<span class="font-label-md text-[11px] font-medium">Perfil</span>
+</a></nav>
+</div>
+</body></html>
