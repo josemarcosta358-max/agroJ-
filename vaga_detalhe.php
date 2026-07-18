@@ -35,20 +35,16 @@ if ($vaga['estado'] === 'aberta') {
     $badge_estado = '<span class="badge bg-secondary">' . htmlspecialchars($vaga['estado']) . '</span>';
 }
 
-// Garante que as listas de candidaturas existem na sessão
-if (!isset($_SESSION['minhas_candidaturas'])) {
-    $_SESSION['minhas_candidaturas'] = [];
-}
-if (!isset($_SESSION['candidaturas_globais'])) {
-    $_SESSION['candidaturas_globais'] = [];
-}
-
 // Verifica se o utilizador já se candidatou a esta vaga (evita duplicados)
+// Agora consultamos o array global $candidaturas_globais (vindo do db_mock.php),
+// que é partilhado por todos os utilizadores, em vez da $_SESSION individual.
 $ja_candidatado = false;
-foreach ($_SESSION['minhas_candidaturas'] as $candidatura) {
-    if ($candidatura['vaga_id'] === $vaga_id) {
-        $ja_candidatado = true;
-        break;
+if (isset($_SESSION['usuario_id'])) {
+    foreach ($candidaturas_globais as $candidatura) {
+        if ($candidatura['vaga_id'] === $vaga_id && $candidatura['candidato_id'] === $_SESSION['usuario_id']) {
+            $ja_candidatado = true;
+            break;
+        }
     }
 }
 
@@ -63,22 +59,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['candidatar'])) {
     }
 
     if (!$ja_candidatado) {
-        // Guarda na lista pessoal do trabalhador (usada no dashboard dele)
-        $_SESSION['minhas_candidaturas'][] = [
-            'vaga_id' => $vaga_id,
-            'titulo'  => $vaga['titulo'],
-            'valor'   => $valor_total,
-            'estado'  => 'pendente',
-        ];
-
-        // Guarda na lista global (usada pelo produtor para ver quem se candidatou)
-        $_SESSION['candidaturas_globais'][] = [
+        $nova_candidatura = [
             'vaga_id'        => $vaga_id,
             'vaga_titulo'    => $vaga['titulo'],
             'candidato_id'   => $_SESSION['usuario_id'],
             'candidato_nome' => $_SESSION['usuario_nome'],
             'estado'         => 'pendente',
         ];
+
+        // Guarda no array global (usada pelo produtor para ver quem se candidatou)
+        // e persiste em disco para sobreviver ao próximo pedido HTTP.
+        $candidaturas_globais[] = $nova_candidatura;
+        save_new_candidatura($nova_candidatura);
 
         $ja_candidatado = true;
     }

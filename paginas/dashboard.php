@@ -8,8 +8,8 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
     exit;
 }
 
-$minhas_candidaturas   = $_SESSION['minhas_candidaturas'] ?? [];
-$candidaturas_globais  = $_SESSION['candidaturas_globais'] ?? [];
+// $candidaturas_globais já vem preenchido pelo db_mock.php (lido do ficheiro
+// que simula a tabela "candidaturas" do MySQL) — deixou de vir da $_SESSION.
 
 $taxa = $config_sistema['comissao_padrao']; // usada no alerta de aceitação
 
@@ -19,9 +19,9 @@ $alerta_aceite = '';
 if ($_SESSION['usuario_tipo'] === 'produtor' && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar_indice'])) {
     $indice = (int) $_POST['aceitar_indice'];
 
-    if (isset($_SESSION['candidaturas_globais'][$indice])) {
-        $_SESSION['candidaturas_globais'][$indice]['estado'] = 'aceite';
-        $candidaturas_globais = $_SESSION['candidaturas_globais']; // atualiza a cópia local
+    if (isset($candidaturas_globais[$indice])) {
+        $candidaturas_globais[$indice]['estado'] = 'aceite';
+        update_candidatura_estado($indice, 'aceite');
 
         $valor_vaga_aceite = 0;
         foreach ($vagas as $v) {
@@ -32,10 +32,14 @@ if ($_SESSION['usuario_tipo'] === 'produtor' && $_SERVER['REQUEST_METHOD'] === '
         }
         $comissao_retida = $valor_vaga_aceite * $taxa;
 
-        $alerta_aceite = "Candidato aceito! A taxa de " . number_format($taxa * 100, 0) . "% ("
+        $alerta_aceite = "Candidato aceite! A taxa de " . number_format($taxa * 100, 0) . "% ("
             . number_format($comissao_retida, 2, ',', '.') . " Kz) sobre o valor da vaga foi retida para a KutungaTech.";
     }
 }
+
+// Mensagem de sucesso vinda de publicar_vaga.php
+$mensagem_sucesso_publicacao = $_SESSION['mensagem_sucesso'] ?? '';
+unset($_SESSION['mensagem_sucesso']); // mostra só uma vez
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -71,15 +75,28 @@ if ($_SESSION['usuario_tipo'] === 'produtor' && $_SERVER['REQUEST_METHOD'] === '
 
     <main class="detalhe-container">
 
-        <?php if ($_SESSION['usuario_tipo'] === 'produtor'): ?>
+        <?php if (!empty($mensagem_sucesso_publicacao)): ?>
+            <div class="alerta-sucesso">
+                <?= htmlspecialchars($mensagem_sucesso_publicacao) ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($_SESSION['usuario_tipo'] === 'produtor' || $_SESSION['usuario_tipo'] === 'cooperativa'): ?>
 
             <!-- ============================================
-                 PAINEL DO PRODUTOR
+                 PAINEL DO PRODUTOR / COOPERATIVA
                  ============================================ -->
-            <h1 class="detalhe-titulo">Painel do Produtor</h1>
-            <p class="detalhe-publicado-por">
-                Olá, <strong><?= htmlspecialchars($_SESSION['usuario_nome']) ?></strong>. Aqui estão as tuas vagas publicadas.
-            </p>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:15px;">
+                <div>
+                    <h1 class="detalhe-titulo">Painel do Produtor</h1>
+                    <p class="detalhe-publicado-por">
+                        Olá, <strong><?= htmlspecialchars($_SESSION['usuario_nome']) ?></strong>. Aqui estão as tuas vagas publicadas.
+                    </p>
+                </div>
+                <a href="publicar_vaga.php" class="btn-primary" style="white-space:nowrap;">
+                    <i class="bi bi-plus-circle"></i> Publicar Nova Vaga
+                </a>
+            </div>
 
             <?php if (!empty($alerta_aceite)): ?>
                 <div class="alerta-sucesso">
@@ -96,13 +113,18 @@ if ($_SESSION['usuario_tipo'] === 'produtor' && $_SERVER['REQUEST_METHOD'] === '
                 ?>
 
                 <?php if (empty($minhas_vagas)): ?>
-                    <p class="dashboard-vazio">Ainda não publicaste nenhuma vaga.</p>
+                    <p class="dashboard-vazio">Ainda não publicaste nenhuma vaga. <a href="publicar_vaga.php">Publicar a primeira vaga</a></p>
                 <?php else: ?>
                     <div class="dashboard-lista">
                         <?php foreach ($minhas_vagas as $vaga_produtor): ?>
                             <div class="dashboard-vaga-card">
                                 <div class="dashboard-vaga-header">
-                                    <h3><?= htmlspecialchars($vaga_produtor['titulo']) ?></h3>
+                                    <h3>
+                                        <?= htmlspecialchars($vaga_produtor['titulo']) ?>
+                                        <?php if (!empty($vaga_produtor['destaque'])): ?>
+                                            <span class="badge bg-warning text-dark">🔥 Destacada</span>
+                                        <?php endif; ?>
+                                    </h3>
                                     <span class="dashboard-valor">
                                         <?= number_format($vaga_produtor['valor_total_kz'], 2, ',', '.') . ' Kz' ?>
                                     </span>
@@ -157,6 +179,13 @@ if ($_SESSION['usuario_tipo'] === 'produtor' && $_SERVER['REQUEST_METHOD'] === '
             <section class="dashboard-secao">
                 <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 25px;">Minhas Candidaturas</h2>
 
+                <?php
+                    // Filtra do array global só as candidaturas deste utilizador
+                    $minhas_candidaturas = array_filter($candidaturas_globais, function ($c) {
+                        return $c['candidato_id'] === $_SESSION['usuario_id'];
+                    });
+                ?>
+
                 <?php if (empty($minhas_candidaturas)): ?>
                     <p class="dashboard-vazio">
                         Ainda não te candidataste a nenhuma vaga. <a href="../index.php">Ver vagas</a>
@@ -166,12 +195,11 @@ if ($_SESSION['usuario_tipo'] === 'produtor' && $_SERVER['REQUEST_METHOD'] === '
                         <?php foreach ($minhas_candidaturas as $candidatura): ?>
                             <div class="dashboard-card">
                                 <div class="dashboard-card-info">
-                                    <h3><?= htmlspecialchars($candidatura['titulo']) ?></h3>
-                                    <span class="dashboard-valor">
-                                        <?= number_format($candidatura['valor'], 2, ',', '.') . ' Kz' ?>
-                                    </span>
+                                    <h3><?= htmlspecialchars($candidatura['vaga_titulo']) ?></h3>
                                 </div>
-                                <span class="badge bg-warning text-dark">Pendente</span>
+                                <span class="badge <?= $candidatura['estado'] === 'aceite' ? 'bg-success' : 'bg-warning text-dark' ?>">
+                                    <?= $candidatura['estado'] === 'aceite' ? 'Aceite' : 'Pendente' ?>
+                                </span>
                             </div>
                         <?php endforeach; ?>
                     </div>

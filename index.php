@@ -21,12 +21,11 @@ require_once 'db_mock.php';
         <nav class="menu" id="nav-menu">
             <ul>
                 <li><a href="#hero">Inicio</a></li>
-                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#sobre">Sobre</a></li>
                 <li><a href="vagas.php">Serviços</a></li>
                 <li><a href="#contactos">Contactos</a></li>
 
                 <?php if (isset($_SESSION['logado']) && $_SESSION['logado'] === true): ?>
-                    <li><a href="paginas/dashboard.php">Meu Painel</a></li>
                     <li><a href="paginas/logout.php">Sair</a></li>
                 <?php else: ?>
                     <li><a href="paginas/login.php">Login</a></li>
